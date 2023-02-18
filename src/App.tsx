@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Header from './components/Header';
+import Lists from './components/Lists';
+import Subjects from './components/Subjects';
 
 function App() {
+  const [subject, setSubject] = useState(0);
+  let onChange: (subject: number) => void;
+  onChange = (subject) => {
+    setSubject(subject)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header sitename='sitename' />
+      <Subjects onChange={onChange} />
+      <Lists subject={subject} />
     </div>
   );
 }

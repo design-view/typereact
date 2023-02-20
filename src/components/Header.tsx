@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 type inprops = {
-    sitename: string
+    sitename: string;
+    onChange: (num: number) => void;
 }
 const HeaderWrapper = styled.div`
     display:flex;
@@ -17,14 +19,14 @@ const Li = styled.li`
     list-style:none;
     padding: 0 20px;
 `
-function Header({ sitename }: inprops) {
+function Header({ sitename, onChange }: inprops) {
     return (
         <HeaderWrapper>
             <h1>{sitename}</h1>
             <HeaderUl>
-                <Li>과목등록</Li>
+                <Li><Link to="/addSubject">과목등록</Link></Li>
                 <Li>내장함수등록</Li>
-                <Li>함수리스트</Li>
+                <Li onClick={() => onChange(0)}><Link to="/">함수리스트</Link></Li>
             </HeaderUl>
         </HeaderWrapper>
     )

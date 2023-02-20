@@ -1,21 +1,32 @@
 import React, { useReducer, useEffect } from 'react'
 // 상태를 위한 타입
-type State = {
+export interface SubjectdataType {
+    id: number;
+    name: string;
+}
+export interface ListdataType {
+    id: number;
+    subject: number;
+    w_name: string;
+    w_type: string;
+    w_syntex: string;
+    w_desc: string;
+}
+export type State = {
     loading: boolean;
-    data: any;
-    error: null | undefined | object;
+    data: null | SubjectdataType[] | ListdataType[];
+    error: null | object;
 };
 
 // 모든 액션들을 위한 타입
-type Action =
-    | { type: 'LOADING' }
-    | { type: 'SUCCESS'; data: object }
+type Action = { type: 'LOADING' }
+    | { type: 'SUCCESS'; data: SubjectdataType[] | ListdataType[] }
     | { type: 'ERROR'; error: any }
 
 // 디스패치를 위한 타입 (Dispatch 를 리액트에서 불러올 수 있음), 액션들의 타입을 Dispatch 의 Generics로 설정
 //   type SampleDispatch = Dispatch<Action>;
 //LOADING, SUCCESS, ERROR
-function reducer(state: State, action: Action) {
+function reducer(state: State, action: Action): State {
     switch (action.type) {
         case 'LOADING':
             return {
@@ -42,7 +53,8 @@ function reducer(state: State, action: Action) {
 
 //callback은 api호출하는 함수 deps는 값이 변경되었을때
 //특정버튼을 누를때만 동작하도록 세번째 속성을 후가
-const useAsync = (callback: any, deps = [], skip = false) => {
+type fetch = () => void;
+const useAsync = (callback: any, deps = [], skip = false): [State, fetch] => {
     const [state, dispatch] = useReducer(reducer, {
         loading: false,
         data: null,

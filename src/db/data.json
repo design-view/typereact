@@ -1,21 +1,25 @@
 {
     "subjects": [
         {
-            "s_id": 1,
-            "s_name": "javascript"
+            "id": 1,
+            "name": "javascript"
         },
         {
-            "s_id": 2,
-            "s_name": "php"
+            "id": 2,
+            "name": "php"
         },
         {
-            "s_id": 3,
-            "s_name": "react"
+            "id": 3,
+            "name": "react"
+        },
+        {
+            "id": 4,
+            "name": "type"
         }
     ],
     "words": [
         {
-            "w_id": 1,
+            "id": 1,
             "subject": 1,
             "w_name": "map()",
             "w_type": "array",
@@ -23,7 +27,7 @@
             "w_desc": "배열요소의 형태를 변경하여 새로운 배열로 리턴"
         },
         {
-            "w_id": 2,
+            "id": 2,
             "subject": 1,
             "w_name": "filter()",
             "w_type": "array",
@@ -31,7 +35,7 @@
             "w_desc": "배열요소중 조건에 맞는 요소만 새로운 배열로 리턴"
         },
         {
-            "w_id": 3,
+            "id": 3,
             "subject": 1,
             "w_name": "replace()",
             "w_type": "string",
@@ -39,7 +43,7 @@
             "w_desc": "문자열에 a문자를 b로 변경"
         },
         {
-            "w_id": 4,
+            "id": 4,
             "subject": 2,
             "w_name": "strlen()",
             "w_type": "string",
@@ -47,7 +51,7 @@
             "w_desc": "문자열의 길이를 리턴해줌"
         },
         {
-            "w_id": 5,
+            "id": 5,
             "subject": 2,
             "w_name": "var_dump()",
             "w_type": "모든타입",
@@ -55,7 +59,7 @@
             "w_desc": "데이터의 값과 타입을 반환"
         },
         {
-            "w_id": 6,
+            "id": 6,
             "subject": 2,
             "w_name": "strtoupper()",
             "w_type": "string",
@@ -63,7 +67,7 @@
             "w_desc": "대문자로 변경 후 반환"
         },
         {
-            "w_id": 7,
+            "id": 7,
             "subject": 3,
             "w_name": "useState()",
             "w_type": "훅함수",

@@ -1,5 +1,5 @@
 import React from 'react'
-import useAsync from '../customhook/useAsync';
+import useAsync, { ListdataType } from '../customhook/useAsync';
 import styled from 'styled-components';
 async function getData() {
     try {
@@ -38,55 +38,41 @@ const ListWrapper = styled.div`
 interface propsType {
     subject: number;
 }
-interface dataType {
-    w_id: number;
-    subject: number;
-    w_name: string;
-    w_type: string;
-    w_syntex: string;
-    w_desc: string;
-}
+
 function Lists({ subject }: propsType) {
     const [words, fetchData] = useAsync(getData);
-    if (typeof words === "object") {
-        let { data, loading, error } = words;
-        if (loading) return <div>로딩중입니다.</div>
-        if (error) return <div>에러가 발생했습니다.</div>
-        if (!data) return <div>데이터가 없습니다.</div>
-        if (data) {
-            if (subject > 0) {
-                data = (data as Array<dataType>).filter(da => da.subject === subject);
-            }
+    let { data, loading, error } = words;
+    if (loading) return <div>로딩중입니다.</div>
+    if (error) return <div>에러가 발생했습니다.</div>
+    if (!data) return <div>데이터가 없습니다.</div>
+    if (data) {
+        if (subject > 0) {
+            data = (data as Array<ListdataType>).filter(da => da.subject === subject);
         }
-        return (
-            <ListWrapper>
-                <h2>주요 내장함수</h2>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>번호</th>
-                            <th>함수명</th>
-                            <th>데이터타입</th>
-                            <th>구문</th>
-                            <th>설명</th>
-                        </tr>
-                        {(data as Array<dataType>).map(da => <tr>
-                            <td>{da.w_id}</td>
-                            <td>{da.w_name}</td>
-                            <td>{da.w_type}</td>
-                            <td>{da.w_syntex}</td>
-                            <td>{da.w_desc}</td>
-                        </tr>)}
-                    </tbody>
-                </table>
-            </ListWrapper>
-        )
-
-    } else {
-        return (<div></div>)
     }
-
-
+    return (
+        <ListWrapper>
+            <h2>주요 내장함수</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>번호</th>
+                        <th>함수명</th>
+                        <th>데이터타입</th>
+                        <th>구문</th>
+                        <th>설명</th>
+                    </tr>
+                    {(data as Array<ListdataType>).map(da => <tr key={da.id}>
+                        <td>{da.id}</td>
+                        <td>{da.w_name}</td>
+                        <td>{da.w_type}</td>
+                        <td>{da.w_syntex}</td>
+                        <td>{da.w_desc}</td>
+                    </tr>)}
+                </tbody>
+            </table>
+        </ListWrapper>
+    )
 }
 
 export default Lists
